@@ -19,8 +19,8 @@
        server: SERVER_PATH,
      },
      output: {
-       path: path.join(__dirname),
-       publicPath: '/',
+       path: path.join(__dirname,'dist'),
+       publicPath: '/rexpack',
        filename: '[name].js'
      },
      mode: argv.mode,

@@ -7,7 +7,7 @@
     "test": "jest",
     "start": "nodemon --watch src --exec \"npm run buildDev\"",
     "coverage": "jest --coverage",
-    "deploy": "gh-pages -d /",
+    "deploy": "gh-pages -d /dist",
     "buildDev": "rm -rf rexpack/dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js && node ./server.js",
     "buildProd": "rm -rf rexpack/dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js && node ./server.js"
   },
