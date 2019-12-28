@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "349f670ca6eb41deb991";
+/******/ 	var hotCurrentHash = "50dfee8363df7e8f1836";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -2754,11 +2754,8 @@ module.exports = function isBuffer (obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
-// Imports
-var getUrl = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
-var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../img/bg.jpg */ "./src/img/bg.jpg"));
 // Module
-exports.push([module.i, "h1, h2, h3, h4, h5, p {\n  font-family: helvetica;\n  color: #3e3e3e;\n}\n\n.description {\n  font-size: 14px;\n  color: #9e9e9e;\n}\n\n.awful-selfie{\n  background: url(" + ___CSS_LOADER_URL___0___ + ");\n  width: 300px;\n  height: 300px;\n  background-size: 100% auto;\n  background-repeat: no-repeat;\n}", ""]);
+exports.push([module.i, "h1, h2, h3, h4, h5, p {\n  font-family: helvetica;\n  color: #3e3e3e;\n}\n\n.description {\n  font-size: 14px;\n  color: #9e9e9e;\n}\n", ""]);
 
 
 /***/ }),
@@ -2861,41 +2858,6 @@ function toComment(sourceMap) {
   var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
   return "/*# ".concat(data, " */");
 }
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
-/*!********************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (url, needQuotes) {
-  // eslint-disable-next-line no-underscore-dangle, no-param-reassign
-  url = url.__esModule ? url.default : url;
-
-  if (typeof url !== 'string') {
-    return url;
-  } // If url is already wrapped in quotes, remove them
-
-
-  if (/^['"].*['"]$/.test(url)) {
-    // eslint-disable-next-line no-param-reassign
-    url = url.slice(1, -1);
-  } // Should url be wrapped?
-  // See https://drafts.csswg.org/css-values-3/#urls
-
-
-  if (/["'() \t\n]/.test(url) || needQuotes) {
-    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, '\\n'), "\"");
-  }
-
-  return url;
-};
 
 /***/ }),
 
@@ -34215,17 +34177,6 @@ if(true) {
 
 	module.hot.dispose(function() { update(); });
 }
-
-/***/ }),
-
-/***/ "./src/img/bg.jpg":
-/*!************************!*\
-  !*** ./src/img/bg.jpg ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "dfe07a62c3eb4990566f19a74aa53aef.jpg";
 
 /***/ }),
 
