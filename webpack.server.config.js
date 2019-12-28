@@ -1,6 +1,6 @@
 /* This config file is only for transpiling the Express server file.
  * You need webpack-node-externals to transpile an express file
- * but if you use it on your regular React bundle, then all the 
+ * but if you use it on your regular React bundle, then all the
  * node modules your app needs to function get stripped out.
  *
  * Note: that prod and dev mode are set in npm scripts.
@@ -20,7 +20,7 @@
      },
      output: {
        path: path.join(__dirname, 'dist'),
-       publicPath: '/',
+       publicPath: '/rexpack',
        filename: '[name].js'
      },
      mode: argv.mode,

@@ -9,7 +9,7 @@ module.exports = {
     main: './src/index.js'
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, './dist'),
     publicPath: '/',
     filename: '[name].js'
   },
@@ -39,7 +39,7 @@ module.exports = {
       },
       {
         // Loads the javacript into html template provided.
-        // Entry point is set below in HtmlWebPackPlugin in Plugins 
+        // Entry point is set below in HtmlWebPackPlugin in Plugins
         test: /\.html$/,
         use: [
           {
