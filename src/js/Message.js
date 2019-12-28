@@ -33,8 +33,8 @@ class Message extends Component {
     // always kill a process everytime we are done using it
     componentWillUnmount() {
         if (this.state.intervalIsSet) {
-            clearInterval(this.state.intervalIsSet);
-            this.setState({intervalIsSet: null});
+            window.clearInterval(this.state.intervalIsSet);
+            window.this.setState({intervalIsSet: null});
         }
     }
 
@@ -46,7 +46,7 @@ class Message extends Component {
     // our first get method that uses our backend api to
     // fetch data from our data base
     getDataFromDb = () => {
-        fetch('http://localhost:8080/api/getData')
+        window.fetch('http://localhost:8080/api/getData')
             .then((data) => data.json())
             .then((res) => this.setState({data: res.data}));
     };

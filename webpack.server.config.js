@@ -19,7 +19,7 @@
        server: SERVER_PATH,
      },
      output: {
-       path: path.join(__dirname, 'rexpack/dist'),
+       path: path.join(__dirname),
        publicPath: '/',
        filename: '[name].js'
      },

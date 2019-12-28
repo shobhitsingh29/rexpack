@@ -6,9 +6,9 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "deploy": "gh-pages -d dist",
-    "buildDev": "rm -rf rexpack/dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js && node ./rexpack/dist/server.js",
-    "buildProd": "rm -rf rexpack/dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js && node ./rexpack/dist/server.js"
+    "deploy": "gh-pages -d /",
+    "buildDev": "rm -rf rexpack/dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js && node ./server.js",
+    "buildProd": "rm -rf rexpack/dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js && node ./server.js"
   },
   "homepage": "https://github.com/shobhitsingh29/rexpack",
   "repository": "https://github.com/shobhitsingh29/rexpack",
