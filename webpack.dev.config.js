@@ -7,7 +7,7 @@ module.exports = {
     main: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', './src/index.js']
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'rexpack/dist'),
     publicPath: '/',
     filename: '[name].js'
   },
@@ -34,7 +34,7 @@ module.exports = {
       },
       {
         // Loads the javacript into html template provided.
-        // Entry point is set below in HtmlWebPackPlugin in Plugins 
+        // Entry point is set below in HtmlWebPackPlugin in Plugins
         test: /\.html$/,
         use: [
           {
@@ -43,7 +43,7 @@ module.exports = {
           }
         ]
       },
-      { 
+      {
         test: /\.css$/,
         use: [ 'style-loader', 'css-loader' ]
       },
