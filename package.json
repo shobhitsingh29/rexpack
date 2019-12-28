@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "deploy": "gh-pages -d rexpack/dist",
+    "deploy": "gh-pages -d dist",
     "buildDev": "rm -rf rexpack/dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js && node ./rexpack/dist/server.js",
     "buildProd": "rm -rf rexpack/dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js && node ./rexpack/dist/server.js"
   },

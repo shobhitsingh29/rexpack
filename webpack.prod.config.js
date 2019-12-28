@@ -9,7 +9,7 @@ module.exports = {
     main: './src/index.js'
   },
   output: {
-    path: path.join(__dirname, 'rexpack//dist'),
+    path: path.join(__dirname, 'rexpack/dist'),
     publicPath: '/',
     filename: '[name].js'
   },
