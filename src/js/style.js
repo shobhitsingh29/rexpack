@@ -5,6 +5,7 @@ export const inputStyle = {
     "font-size": "12px",
     "font-family": "inherit",
     "font-weight": "inherit",
+    "border-radius": "2%",
     "color": "inherit",
     "padding": "6px",
     "border": "1px solid #999",
