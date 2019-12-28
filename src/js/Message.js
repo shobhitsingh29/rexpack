@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-
+import {inputStyle} from  "./style"
 class Message extends Component {
     // initialize our state
     constructor(props) {
@@ -124,7 +124,7 @@ class Message extends Component {
                         type="text"
                         onChange={(e) => this.setState({message: e.target.value})}
                         placeholder="add something in the database"
-                        style={{width: '200px'}}
+                        style={inputStyle}
                     />
                     <button onClick={() => this.putDataToDB(this.state.message)}>
                         ADD
@@ -133,7 +133,7 @@ class Message extends Component {
                 <div style={{padding: '10px'}}>
                     <input
                         type="text"
-                        style={{width: '200px'}}
+                        style={inputStyle}
                         onChange={(e) => this.setState({idToDelete: e.target.value})}
                         placeholder="put id of item to delete here"
                     />
@@ -144,13 +144,13 @@ class Message extends Component {
                 <div style={{padding: '10px'}}>
                     <input
                         type="text"
-                        style={{width: '200px'}}
+                        style={inputStyle}
                         onChange={(e) => this.setState({idToUpdate: e.target.value})}
                         placeholder="id of item to update here"
                     />
                     <input
                         type="text"
-                        style={{width: '200px'}}
+                        style={inputStyle}
                         onChange={(e) => this.setState({updateToApply: e.target.value})}
                         placeholder="put new value of the item here"
                     />
