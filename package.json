@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon --watch src --exec \"npm run buildProd\"",
+    "start": "nodemon --watch src --exec \"npm run buildDev\"",
     "coverage": "jest --coverage",
     "deploy": "gh-pages -d /",
     "buildDev": "rm -rf rexpack/dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js && node ./server.js",
