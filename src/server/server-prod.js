@@ -5,9 +5,11 @@ import mongoose from "mongoose";
 import getSecret from "./secret";
 import bodyParser from "body-parser";
 import Data from "./data";
+import cors from "cors";
 const app = express(),
             DIST_DIR = __dirname,
             HTML_FILE = path.join(DIST_DIR, 'index.html');
+app.use(cors());
 
 
 
