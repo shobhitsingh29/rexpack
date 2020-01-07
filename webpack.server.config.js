@@ -5,14 +5,14 @@
  *
  * Note: that prod and dev mode are set in npm scripts.
  */
- const path = require('path')
- const webpack = require('webpack')
- const nodeExternals = require('webpack-node-externals')
+ const path = require('path');
+ const webpack = require('webpack');
+ const nodeExternals = require('webpack-node-externals');
 
  module.exports = (env, argv) => {
    const SERVER_PATH = (argv.mode === 'production') ?
      './src/server/server-prod.js' :
-     './src/server/server-dev.js'
+     './src/server/server-dev.js';
 
    return ({
      entry: {
@@ -44,7 +44,7 @@
        ]
      }
    })
- }
+ };
 
 // Webpack 4 basic tutorial:
 // https://www.valentinog.com/blog/webpack-4-tutorial/#webpack_4_production_and_development_mode

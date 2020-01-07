@@ -803,10 +803,10 @@
 "use strict";
 
 
-module.exports = ansiHTML
+module.exports = ansiHTML;
 
 // Reference to https://github.com/sindresorhus/ansi-regex
-var _regANSI = /(?:(?:\u001b\[)|\u009b)(?:(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?[A-M|f-m])|\u001b[A-M]/
+var _regANSI = /(?:(?:\u001b\[)|\u009b)(?:(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?[A-M|f-m])|\u001b[A-M]/;
 
 var _defColors = {
   reset: ['fff', '000'], // [FOREGROUD_COLOR, BACKGROUND_COLOR]
@@ -819,7 +819,7 @@ var _defColors = {
   cyan: '00ffee',
   lightgrey: 'f0f0f0',
   darkgrey: '888'
-}
+};
 var _styles = {
   30: 'black',
   31: 'red',
@@ -829,7 +829,7 @@ var _styles = {
   35: 'magenta',
   36: 'cyan',
   37: 'lightgrey'
-}
+};
 var _openTags = {
   '1': 'font-weight:bold', // bold
   '2': 'opacity:0.5', // dim
@@ -837,7 +837,7 @@ var _openTags = {
   '4': '<u>', // underscore
   '8': 'display:none', // hidden
   '9': '<del>' // delete
-}
+};
 var _closeTags = {
   '23': '</i>', // reset italic
   '24': '</u>', // reset underscore
@@ -846,7 +846,7 @@ var _closeTags = {
 
 ;[0, 21, 22, 27, 28, 39, 49].forEach(function (n) {
   _closeTags[n] = '</span>'
-})
+});
 
 /**
  * Converts text with ANSI color codes to HTML markup.
@@ -860,33 +860,33 @@ function ansiHTML (text) {
   }
 
   // Cache opened sequence.
-  var ansiCodes = []
+  var ansiCodes = [];
   // Replace with markup.
   var ret = text.replace(/\033\[(\d+)*m/g, function (match, seq) {
-    var ot = _openTags[seq]
+    var ot = _openTags[seq];
     if (ot) {
       // If current sequence has been opened, close it.
       if (!!~ansiCodes.indexOf(seq)) { // eslint-disable-line no-extra-boolean-cast
-        ansiCodes.pop()
+        ansiCodes.pop();
         return '</span>'
       }
       // Open tag.
-      ansiCodes.push(seq)
+      ansiCodes.push(seq);
       return ot[0] === '<' ? ot : '<span style="' + ot + ';">'
     }
 
-    var ct = _closeTags[seq]
+    var ct = _closeTags[seq];
     if (ct) {
       // Pop sequence
-      ansiCodes.pop()
+      ansiCodes.pop();
       return ct
     }
     return ''
-  })
+  });
 
   // Make sure tags are closed.
   var l = ansiCodes.length
-  ;(l > 0) && (ret += Array(l + 1).join('</span>'))
+  ;(l > 0) && (ret += Array(l + 1).join('</span>'));
 
   return ret
 }
@@ -900,11 +900,11 @@ ansiHTML.setColors = function (colors) {
     throw new Error('`colors` parameter must be an Object.')
   }
 
-  var _finalColors = {}
+  var _finalColors = {};
   for (var key in _defColors) {
-    var hex = colors.hasOwnProperty(key) ? colors[key] : null
+    var hex = colors.hasOwnProperty(key) ? colors[key] : null;
     if (!hex) {
-      _finalColors[key] = _defColors[key]
+      _finalColors[key] = _defColors[key];
       continue
     }
     if ('reset' === key) {
@@ -916,12 +916,12 @@ ansiHTML.setColors = function (colors) {
       })) {
         throw new Error('The value of `' + key + '` property must be an Array and each item could only be a hex string, e.g.: FF0000')
       }
-      var defHexColor = _defColors[key]
+      var defHexColor = _defColors[key];
       if (!hex[0]) {
         hex[0] = defHexColor[0]
       }
       if (hex.length === 1 || !hex[1]) {
-        hex = [hex[0]]
+        hex = [hex[0]];
         hex.push(defHexColor[1])
       }
 
@@ -932,46 +932,46 @@ ansiHTML.setColors = function (colors) {
     _finalColors[key] = hex
   }
   _setTags(_finalColors)
-}
+};
 
 /**
  * Reset colors.
  */
 ansiHTML.reset = function () {
   _setTags(_defColors)
-}
+};
 
 /**
  * Expose tags, including open and close.
  * @type {Object}
  */
-ansiHTML.tags = {}
+ansiHTML.tags = {};
 
 if (Object.defineProperty) {
   Object.defineProperty(ansiHTML.tags, 'open', {
     get: function () { return _openTags }
-  })
+  });
   Object.defineProperty(ansiHTML.tags, 'close', {
     get: function () { return _closeTags }
   })
 } else {
-  ansiHTML.tags.open = _openTags
+  ansiHTML.tags.open = _openTags;
   ansiHTML.tags.close = _closeTags
 }
 
 function _setTags (colors) {
   // reset all
-  _openTags['0'] = 'font-weight:normal;opacity:1;color:#' + colors.reset[0] + ';background:#' + colors.reset[1]
+  _openTags['0'] = 'font-weight:normal;opacity:1;color:#' + colors.reset[0] + ';background:#' + colors.reset[1];
   // inverse
-  _openTags['7'] = 'color:#' + colors.reset[1] + ';background:#' + colors.reset[0]
+  _openTags['7'] = 'color:#' + colors.reset[1] + ';background:#' + colors.reset[0];
   // dark grey
-  _openTags['90'] = 'color:#' + colors.darkgrey
+  _openTags['90'] = 'color:#' + colors.darkgrey;
 
   for (var code in _styles) {
-    var color = _styles[code]
-    var oriColor = colors[color] || '000'
-    _openTags[code] = 'color:#' + oriColor
-    code = parseInt(code)
+    var color = _styles[code];
+    var oriColor = colors[color] || '000';
+    _openTags[code] = 'color:#' + oriColor;
+    code = parseInt(code);
     _openTags[(code + 10).toString()] = 'background:#' + oriColor
   }
 }
@@ -3440,7 +3440,7 @@ function shouldUseNative() {
 		// Detect buggy property enumeration order in older V8 versions.
 
 		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		var test1 = String('abc');  // eslint-disable-line no-new-wrappers
 		test1[5] = 'de';
 		if (Object.getOwnPropertyNames(test1)[0] === '5') {
 			return false;
@@ -3548,7 +3548,7 @@ function defaultClearTimeout () {
     } catch (e) {
         cachedClearTimeout = defaultClearTimeout;
     }
-} ())
+} ());
 function runTimeout(fun) {
     if (cachedSetTimeout === setTimeout) {
         //normal enviroments in sane situations
@@ -3685,7 +3685,7 @@ process.emit = noop;
 process.prependListener = noop;
 process.prependOnceListener = noop;
 
-process.listeners = function (name) { return [] }
+process.listeners = function (name) { return [] };
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
@@ -14986,7 +14986,7 @@ function getUnmaskedContext(workInProgress, Component, didPushOwnContextIfProvid
 
 function cacheContext(workInProgress, unmaskedContext, maskedContext) {
   if (disableLegacyContext) {
-    return;
+
   } else {
     var instance = workInProgress.stateNode;
     instance.__reactInternalMemoizedUnmaskedChildContext = unmaskedContext;
@@ -15051,7 +15051,7 @@ function isContextProvider(type) {
 
 function popContext(fiber) {
   if (disableLegacyContext) {
-    return;
+
   } else {
     pop(didPerformWorkStackCursor, fiber);
     pop(contextStackCursor, fiber);
@@ -15060,7 +15060,7 @@ function popContext(fiber) {
 
 function popTopLevelContextObject(fiber) {
   if (disableLegacyContext) {
-    return;
+
   } else {
     pop(didPerformWorkStackCursor, fiber);
     pop(contextStackCursor, fiber);
@@ -15069,7 +15069,7 @@ function popTopLevelContextObject(fiber) {
 
 function pushTopLevelContextObject(fiber, context, didChange) {
   if (disableLegacyContext) {
-    return;
+
   } else {
     (function () {
       if (!(contextStackCursor.current === emptyContextObject)) {
@@ -15161,7 +15161,7 @@ function pushContextProvider(workInProgress) {
 
 function invalidateContextProvider(workInProgress, type, didChange) {
   if (disableLegacyContext) {
-    return;
+
   } else {
     var instance = workInProgress.stateNode;
     (function () {
@@ -16598,7 +16598,7 @@ var currentlyProcessingQueue = void 0;
 {
   didWarnUpdateInsideUpdate = false;
   currentlyProcessingQueue = null;
-  
+
 }
 
 function createUpdateQueue(baseState) {
@@ -20450,7 +20450,7 @@ function insertNonHydratedInstance(returnFiber, fiber) {
               didNotFindHydratableContainerTextInstance(parentContainer, text);
               break;
             case SuspenseComponent:
-              
+
               break;
           }
           break;
@@ -22743,7 +22743,7 @@ if (supportsMutation) {
     var node = workInProgress.child;
     while (node !== null) {
       // eslint-disable-next-line no-labels
-      branches: if (node.tag === HostComponent) {
+      if (node.tag === HostComponent) {
         var instance = node.stateNode;
         if (needsVisibilityToggle && isHidden) {
           // This child is inside a timed out tree. Hide it.
@@ -22827,7 +22827,7 @@ if (supportsMutation) {
     var node = workInProgress.child;
     while (node !== null) {
       // eslint-disable-next-line no-labels
-      branches: if (node.tag === HostComponent) {
+      if (node.tag === HostComponent) {
         var instance = node.stateNode;
         if (needsVisibilityToggle && isHidden) {
           // This child is inside a timed out tree. Hide it.
@@ -33167,7 +33167,7 @@ function listToStyles (list, options) {
 }
 
 function insertStyleElement (options, style) {
-	var target = getElement(options.insertInto)
+	var target = getElement(options.insertInto);
 
 	if (!target) {
 		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
@@ -33958,7 +33958,7 @@ var hmrDocsUrl = "https://webpack.js.org/concepts/hot-module-replacement/"; // e
 
 var lastHash;
 var failureStatuses = { abort: 1, fail: 1 };
-var applyOptions = { 				
+var applyOptions = {
   ignoreUnaccepted: true,
   ignoreDeclined: true,
   ignoreErrored: true,
@@ -33971,8 +33971,8 @@ var applyOptions = {
   onErrored: function(data) {
     console.error(data.error);
     console.warn("Ignored an error while updating module " + data.moduleId + " (" + data.type + ")");
-  } 
-}
+  }
+};
 
 function upToDate(hash) {
   if (hash) lastHash = hash;
@@ -34142,9 +34142,9 @@ var insertInto;
 
 
 
-var options = {"hmr":true}
+var options = {"hmr":true};
 
-options.transform = transform
+options.transform = transform;
 options.insertInto = undefined;
 
 var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
@@ -34193,7 +34193,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _js_Message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/Message */ "./src/js/Message.js");
+/* harmony import */ var _js_Message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/App */ "./src/js/Message.js");
 /* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/style.css */ "./src/css/style.css");
 /* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_css_style_css__WEBPACK_IMPORTED_MODULE_3__);
 
@@ -34202,14 +34202,14 @@ __webpack_require__.r(__webpack_exports__);
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_js_Message__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('react-container') // eslint-disable-line no-undef
 );
-if (true) // eslint-disable-line no-undef  
+if (true) // eslint-disable-line no-undef
   module.hot.accept(); // eslint-disable-line no-undef
 
 /***/ }),
 
 /***/ "./src/js/Message.js":
 /*!***************************!*\
-  !*** ./src/js/Message.js ***!
+  !*** ./src/js/App.js ***!
   \***************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

@@ -1,10 +1,10 @@
 import React from 'react'
 import Enzyme, { shallow, mount, render } from 'enzyme'
-import Message from '../Message'
+import App from '../App'
 
-describe('<Message />', () => {
+describe('<App />', () => {
   test('renders a single <p> tag', () => {
-    const wrapper = shallow(<Message />);
+    const wrapper = shallow(<App />);
     expect(wrapper.find('p')).toHaveLength(1);
   });
-})
+});

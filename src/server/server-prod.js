@@ -7,7 +7,7 @@ import bodyParser from "body-parser";
 import Data from "./data";
 const app = express(),
             DIST_DIR = __dirname,
-            HTML_FILE = path.join(DIST_DIR, 'index.html')
+            HTML_FILE = path.join(DIST_DIR, 'index.html');
 
 
 
@@ -17,7 +17,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 const router = express.Router();
 
-app.use(express.static(DIST_DIR))
+app.use(express.static(DIST_DIR));
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -76,10 +76,10 @@ router.get("/", (req, res) => {
 
 app.get('*', (req, res) => {
     res.sendFile(HTML_FILE)
-})
+});
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-    console.log(`App listening to ${PORT}....`)
+    console.log(`App listening to ${PORT}....`);
     console.log('Press Ctrl+C to quit.')
-})
+});

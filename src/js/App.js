@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {inputStyle} from  "./style"
-class Message extends Component {
+import {StyledInput, StyledList ,StyledBtn} from  "./style"
+import Title from "./views/sharedViews/title"
+class App extends Component {
     // initialize our state
     constructor(props) {
         super(props);
@@ -108,63 +109,59 @@ class Message extends Component {
         const {data} = this.state;
         return (
             <div>
+                <Title> To Do</Title>
+                <div style={{padding: '10px'}}>
+                    <StyledInput
+                        type="text"
+                        onChange={(e) => this.setState({message: e.target.value})}
+                        placeholder="What needs to be done?"
+                    />
+                    <StyledBtn onClick={() => this.putDataToDB(this.state.message)}>
+                        ADD
+                    </StyledBtn>
+                </div>
+
                 <ul>
                     {data.length <= 0
                         ? 'NO DB ENTRIES YET'
                         : data.map((dat) => (
-                            <li style={{padding: '10px'}} key={data.message}>
-                                <span style={{color: 'gray'}}> id: </span> {dat.id} <br/>
-                                <span style={{color: 'gray'}}> data: </span>
+                            <StyledList key={data.message}>
                                 {dat.message}
-                            </li>
+                            </StyledList>
                         ))}
                 </ul>
-                <div style={{padding: '10px'}}>
-                    <input
-                        type="text"
-                        onChange={(e) => this.setState({message: e.target.value})}
-                        placeholder="add something in the database"
-                        style={inputStyle}
-                    />
-                    <button onClick={() => this.putDataToDB(this.state.message)}>
-                        ADD
-                    </button>
-                </div>
-                <div style={{padding: '10px'}}>
-                    <input
-                        type="text"
-                        style={inputStyle}
-                        onChange={(e) => this.setState({idToDelete: e.target.value})}
-                        placeholder="put id of item to delete here"
-                    />
-                    <button onClick={() => this.deleteFromDB(this.state.idToDelete)}>
-                        DELETE
-                    </button>
-                </div>
-                <div style={{padding: '10px'}}>
-                    <input
-                        type="text"
-                        style={inputStyle}
-                        onChange={(e) => this.setState({idToUpdate: e.target.value})}
-                        placeholder="id of item to update here"
-                    />
-                    <input
-                        type="text"
-                        style={inputStyle}
-                        onChange={(e) => this.setState({updateToApply: e.target.value})}
-                        placeholder="put new value of the item here"
-                    />
-                    <button
-                        onClick={() =>
-                            this.updateDB(this.state.idToUpdate, this.state.updateToApply)
-                        }
-                    >
-                        UPDATE
-                    </button>
-                </div>
+                {/*<div style={{padding: '10px'}}>*/}
+                {/*    <StyledInput*/}
+                {/*        type="text"*/}
+                {/*        onChange={(e) => this.setState({idToDelete: e.target.value})}*/}
+                {/*        placeholder="put id of item to delete here"*/}
+                {/*    />*/}
+                {/*    <button onClick={() => this.deleteFromDB(this.state.idToDelete)}>*/}
+                {/*        DELETE*/}
+                {/*    </button>*/}
+                {/*</div>*/}
+                {/*<div style={{padding: '10px'}}>*/}
+                {/*    <StyledInput*/}
+                {/*        type="text"*/}
+                {/*        onChange={(e) => this.setState({idToUpdate: e.target.value})}*/}
+                {/*        placeholder="id of item to update here"*/}
+                {/*    />*/}
+                {/*    <StyledInput*/}
+                {/*        type="text"*/}
+                {/*        onChange={(e) => this.setState({updateToApply: e.target.value})}*/}
+                {/*        placeholder="put new value of the item here"*/}
+                {/*    />*/}
+                {/*    <button*/}
+                {/*        onClick={() =>*/}
+                {/*            this.updateDB(this.state.idToUpdate, this.state.updateToApply)*/}
+                {/*        }*/}
+                {/*    >*/}
+                {/*        UPDATE*/}
+                {/*    </button>*/}
+                {/*</div>*/}
             </div>
         );
     }
 }
 
-export default Message;
+export default App;

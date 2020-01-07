@@ -20,7 +20,7 @@ const router = express.Router();
 const app = express(),
             DIST_DIR = __dirname,
             HTML_FILE = path.join(DIST_DIR, 'index.html'),
-            compiler = webpack(config)
+            compiler = webpack(config);
 
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
@@ -29,7 +29,7 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(webpackHotMiddleware(compiler))
+app.use(webpackHotMiddleware(compiler));
 app.use("/api", router);
 
 
@@ -86,14 +86,14 @@ app.get('*', (req, res, next) => {
     if (err) {
       return next(err)
     }
-    res.set('content-type', 'text/html')
-    res.send(result)
+    res.set('content-type', 'text/html');
+    res.send(result);
     res.end()
   })
-})
-const PORT = process.env.PORT || 8080
+});
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
-    console.log(`App listening to ${PORT}....`)
+    console.log(`App listening to ${PORT}....`);
     console.log('Press Ctrl+C to quit.')
-})
+});
