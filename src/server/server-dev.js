@@ -1,5 +1,6 @@
 import path from 'path'
 import express from 'express'
+import cors from 'cors'
 import webpack from 'webpack'
 import mongoose from "mongoose";
 import getSecret from "./secret";
@@ -21,6 +22,7 @@ const app = express(),
             DIST_DIR = __dirname,
             HTML_FILE = path.join(DIST_DIR, 'index.html'),
             compiler = webpack(config);
+app.use(cors());
 
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
