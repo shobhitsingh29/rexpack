@@ -1,15 +1,15 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const StyledList = styled.li`
     border: 1px solid #999;
     background: darkgrey;
-    border-bottom: 1px solid #a9a9a91f;
+    border-bottom: 1px solid antiquewhite;
     list-style: none;
     white-space: pre-line;
     word-break: break-all;
     padding: 15px 60px 15px 15px;
     margin-left: 45px;
-    display: block;
+    display: inline-block;
     line-height: 1.2;
     transition: color 0.4s;
     border: 0;
@@ -17,7 +17,7 @@ export const StyledList = styled.li`
     border-bottom: 1px solid #ededed;
     position: relative;
     margin: 0;
-    width: calc(100% - 175px);
+    width: calc(74.5%);
     font-size: 24px;
     font-family: inherit;
     font-weight: inherit;
@@ -25,20 +25,27 @@ export const StyledList = styled.li`
     outline: none;
     color: inherit;
 `;
+export const StyledUl= styled.ul`
+    border: 0;
+    margin: 0;
+    padding: 0;
+`;
 export const StyledBtn = styled.button`
-   width: 40px;
+    width: 106px;
     cursor: pointer;
     background: #d6d6d6;
     font-weight: bold;
-    padding: 22px;
+    font-size: 22px;
+    padding: 18px;
     padding-left: 10px;
     padding-right: 10px;
     text-align: center;
+    border: 1px solid #999;
+
 `;
 
 
 export const StyledInput = styled.input`
-    padding-left: calc(15px + 40px);
     box-shadow: 0 -2px 1px rgba(0,0,0,0.03);
     width: 200px;
     font-size: 12px;
@@ -46,19 +53,18 @@ export const StyledInput = styled.input`
     font-weight: inherit;
     border-radius: 2%;
     color: inherit;
-    padding: 6px;
     border: 1px solid #999;
     box-sizing: border-box;
     white-space: pre-line;
     word-break: break-all;
     padding: 15px 60px 15px 15px;
     margin-left: 45px;
-    display: block;
+    display: inline-block ;
     line-height: 1.2;
     transition: color 0.4s;
     background: rgba(0, 0, 0, 0.003);
     margin: 0;
-    width: calc(100% - 175px);
+    width: calc(80%);
     font-size: 24px;
     font-family: inherit;
     font-weight: inherit;

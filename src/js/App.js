@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {StyledInput, StyledList ,StyledBtn} from  "./style"
+import {StyledInput, StyledList, StyledBtn, StyledUl} from "./style"
 import Title from "./views/sharedViews/title"
+
 class App extends Component {
     // initialize our state
     constructor(props) {
         super(props);
-
+        this.textInput = React.createRef();
         this.state = {
             data: [],
             id: 0,
@@ -35,7 +36,7 @@ class App extends Component {
     componentWillUnmount() {
         if (this.state.intervalIsSet) {
             window.clearInterval(this.state.intervalIsSet);
-            window.this.setState({intervalIsSet: null});
+            this.setState({intervalIsSet: null});
         }
     }
 
@@ -110,7 +111,7 @@ class App extends Component {
         return (
             <div>
                 <Title> To Do</Title>
-                <div style={{padding: '10px'}}>
+                <div>
                     <StyledInput
                         type="text"
                         onChange={(e) => this.setState({message: e.target.value})}
@@ -120,45 +121,38 @@ class App extends Component {
                         ADD
                     </StyledBtn>
                 </div>
+                <br/>
+                <br/>
+                <br/>
 
-                <ul>
+                <StyledUl>
                     {data.length <= 0
                         ? 'NO DB ENTRIES YET'
-                        : data.map((dat) => (
-                            <StyledList key={data.message}>
-                                {dat.message}
-                            </StyledList>
-                        ))}
-                </ul>
-                {/*<div style={{padding: '10px'}}>*/}
-                {/*    <StyledInput*/}
-                {/*        type="text"*/}
-                {/*        onChange={(e) => this.setState({idToDelete: e.target.value})}*/}
-                {/*        placeholder="put id of item to delete here"*/}
-                {/*    />*/}
-                {/*    <button onClick={() => this.deleteFromDB(this.state.idToDelete)}>*/}
-                {/*        DELETE*/}
-                {/*    </button>*/}
-                {/*</div>*/}
-                {/*<div style={{padding: '10px'}}>*/}
-                {/*    <StyledInput*/}
-                {/*        type="text"*/}
-                {/*        onChange={(e) => this.setState({idToUpdate: e.target.value})}*/}
-                {/*        placeholder="id of item to update here"*/}
-                {/*    />*/}
-                {/*    <StyledInput*/}
-                {/*        type="text"*/}
-                {/*        onChange={(e) => this.setState({updateToApply: e.target.value})}*/}
-                {/*        placeholder="put new value of the item here"*/}
-                {/*    />*/}
-                {/*    <button*/}
-                {/*        onClick={() =>*/}
-                {/*            this.updateDB(this.state.idToUpdate, this.state.updateToApply)*/}
-                {/*        }*/}
-                {/*    >*/}
-                {/*        UPDATE*/}
-                {/*    </button>*/}
-                {/*</div>*/}
+                        : data.map((dat) => {
+                            return (
+                                <React.Fragment key={dat._id}>
+                                    <StyledList key={dat.message}
+                                    >
+                                        {dat.message}
+                                    </StyledList>
+                                    <StyledBtn onClick={() => this.deleteFromDB(dat.id)}>
+                                        Delete
+                                    </StyledBtn>
+                                    <StyledInput
+                                        type="text"
+                                        onChange={(e) => this.setState({updateToApply: e.target.value})}
+                                        placeholder="What needs to be updated value!"
+                                    />
+                                    <StyledBtn onClick={() => this.updateDB(dat.id, this.state.updateToApply)}>
+                                        Update
+                                    </StyledBtn>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </React.Fragment>
+                            )
+                        })}
+                </StyledUl>
             </div>
         );
     }
