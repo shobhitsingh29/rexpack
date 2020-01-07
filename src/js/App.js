@@ -7,7 +7,6 @@ class App extends Component {
     // initialize our state
     constructor(props) {
         super(props);
-        this.textInput = React.createRef();
         this.state = {
             data: [],
             id: 0,
