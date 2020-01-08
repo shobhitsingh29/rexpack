@@ -17,8 +17,19 @@ app.use((req, res, next) => {
 });
 mongoose.connect(getSecret("dbUri"));
 let db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
+
+db.on('connected', function(){
+    console.log("Mongoose default connection is open to ", getSecret("dbUri"));
+});
+
+db.on('error', function(err){
+    console.log(error("Mongoose default connection has occured "+err+" error"));
+});
+
+db.on('disconnected', function(){
+    console.log("Mongoose default connection is disconnected");
+});
 const router = express.Router();
 
 app.use(express.static(DIST_DIR));

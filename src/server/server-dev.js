@@ -12,7 +12,9 @@ import webpackHotMiddleware from 'webpack-hot-middleware'
 import config from '../../webpack.dev.config.js'
 
 
-mongoose.connect(getSecret("dbUri"));
+mongoose.connect(getSecret("dbUri"),{
+  useNewUrlParser: true,
+});
 let db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
@@ -26,6 +28,7 @@ app.use(cors({credentials: true, origin: true}));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Credentials',true);
   next();
 });
 app.use(webpackDevMiddleware(compiler, {
