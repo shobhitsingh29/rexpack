@@ -24,10 +24,6 @@ const app = express(),
             compiler = webpack(config);
 app.use(cors({credentials: true, origin: true}));
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
 }));

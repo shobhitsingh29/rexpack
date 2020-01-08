@@ -11,10 +11,6 @@ const app = express(),
             HTML_FILE = path.join(DIST_DIR, 'index.html');
 app.use(cors({credentials: true, origin: true}));
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-});
 mongoose.connect(getSecret("dbUri"));
 let db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
