@@ -5,14 +5,15 @@ import mongoose from "mongoose";
 import getSecret from "./secret";
 import bodyParser from "body-parser";
 import Data from "./data";
-import cors from "cors";
 const app = express(),
             DIST_DIR = __dirname,
             HTML_FILE = path.join(DIST_DIR, 'index.html');
-app.use(cors({credentials: true, origin: true}));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Credentials',true);
+    res.header('Access-Control-Allow-Methods',"GET, PUT, POST, DELETE, HEAD, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 mongoose.connect(getSecret("dbUri"));

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {StyledInput, StyledList, StyledBtn, StyledUl} from "./style"
 import Title from "./views/sharedViews/title"
 
@@ -61,9 +60,18 @@ class App extends Component {
             ++idToBeAdded;
         }
 
-        axios.post('http://localhost:8080/api/putData', {
-            id: idToBeAdded,
-            message: message,
+        window.fetch('http://localhost:8080/api/putData', {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, include
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *client
+            body: JSON.stringify({ id: idToBeAdded,
+                message: message,})
         });
     };
 
@@ -78,10 +86,18 @@ class App extends Component {
             }
         });
 
-        axios.delete('http://localhost:8080/api/deleteData', {
-            data: {
-                id: objIdToDelete,
+
+        window.fetch('http://localhost:8080/api/deleteData', {
+            method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, include
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *client
+            body: JSON.stringify({ id: objIdToDelete})
         });
     };
 
@@ -96,9 +112,17 @@ class App extends Component {
             }
         });
 
-        axios.post('http://localhost:8080/api/updateData', {
-            id: objIdToUpdate,
-            update: {message: updateToApply},
+        window.fetch('http://localhost:8080/api/deleteData', {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, include
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *client
+            body: JSON.stringify({ id: objIdToUpdate,
+                update: {message: updateToApply}})
         });
     };
 
