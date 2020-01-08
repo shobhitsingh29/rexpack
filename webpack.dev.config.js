@@ -8,7 +8,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    publicPath: '/rexpack',
+    publicPath: '/',
     filename: '[name].js'
   },
   mode: 'development',

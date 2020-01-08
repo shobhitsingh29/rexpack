@@ -109,7 +109,7 @@ class App extends Component {
         const {data} = this.state;
         return (
             <div>
-                <Title> To Do</Title>
+                <Title> To Dos</Title>
                 <div>
                     <StyledInput
                         type="text"
