@@ -16,7 +16,10 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-mongoose.connect(getSecret("dbUri"));
+mongoose.connect(getSecret("dbUri"),{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 let db = mongoose.connection;
 
 
@@ -25,7 +28,7 @@ db.on('connected', function(){
 });
 
 db.on('error', function(err){
-    console.log(error("Mongoose default connection has occured "+err+" error"));
+    console.log("Mongoose default connection has occured "+err+" error");
 });
 
 db.on('disconnected', function(){
