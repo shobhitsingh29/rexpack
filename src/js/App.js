@@ -149,7 +149,7 @@ class App extends Component {
                 <br/>
 
                 <StyledUl>
-                    {data.length <= 0
+                    {data && data.length <= 0
                         ? 'NO DB ENTRIES YET'
                         : data.map((dat) => {
                             return (
